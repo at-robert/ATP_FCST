@@ -141,6 +141,7 @@ if __name__ == "__main__":
     reload(sys)
     sys.setdefaultencoding('utf-8')
     ## date and time representation
+    print "Setup Path = %s" %(path)
     print "Current date & time " + time.strftime("%c")
     search_xls_CM()
     open_index_file(path)
