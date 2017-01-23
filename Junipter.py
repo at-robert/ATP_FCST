@@ -40,8 +40,8 @@ def check_junipter_month(first_sheet, index):
         # print "Juniper Rule FEB_MARCH"
     
     elif atp_def.MONTH_SET == "MARCH_APL":
-        month1 = re.compile(r'03\/[0-9][0-9]\/2017', re.IGNORECASE)
-        month2 = re.compile(r'04\/[0-9][0-9]\/2017', re.IGNORECASE)
+        month1 = re.compile(r'03\/[0-9][0-9]\/2017|04\/[0][0-3]\/2017|04\/[1][0]\/2017', re.IGNORECASE)
+        month2 = re.compile(r'04\/[1][1-9]\/2017|04\/[2-3][0-9]\/2017|05\/[0][1]\/2017', re.IGNORECASE)
         #print "Juniper Rule MARCH_APL"
     elif atp_def.MONTH_SET == "MAY_JUNE":
         month1 = re.compile(r'05\/[0-9][0-9]\/2017', re.IGNORECASE)
@@ -95,7 +95,7 @@ def print_junipter_rule(first_sheet, key_row):
         if(check_junipter_month(first_sheet,j) == 1):
             month1_sum = month1_sum + check_if_string_num_add(row[search_junipter_rule.month_colm[j]])
         elif(check_junipter_month(first_sheet,j) == 2):
-            month1_sum = month1_sum + check_if_string_num_add(row[search_junipter_rule.month_colm[j]])
+            month2_sum = month2_sum + check_if_string_num_add(row[search_junipter_rule.month_colm[j]])
     print ""
 
     print "Month 1 sum = %d, Month 2 sum = %d" %(month1_sum,month2_sum)
@@ -116,8 +116,8 @@ def search_junipter_rule(first_sheet, key_row):
         print "Juniper Rule FEB_MARCH"
 
     elif atp_def.MONTH_SET == "MARCH_APL":
-        month1 = re.compile(r'03\/[0-9][0-9]\/2017', re.IGNORECASE)
-        month2 = re.compile(r'04\/[0-9][0-9]\/2017', re.IGNORECASE)
+        month1 = re.compile(r'03\/[0-9][0-9]\/2017|04\/[0][0-3]\/2017|04\/[1][0]\/2017', re.IGNORECASE)
+        month2 = re.compile(r'04\/[1][1-9]\/2017|04\/[2-3][0-9]\/2017|05\/[0][1]\/2017', re.IGNORECASE)
         #print "Juniper Rule MARCH_APL"
     elif atp_def.MONTH_SET == "MAY_JUNE":
         month1 = re.compile(r'05\/[0-9][0-9]\/2017', re.IGNORECASE)
