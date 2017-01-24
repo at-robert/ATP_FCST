@@ -8,6 +8,7 @@ ICREQ_FILE = "/Users/mac/Documents/ATP/ICRequest.xlsx"
 LIST_PATH = "/Users/mac/Documents/ATP/list"
 FILE_TYPE1 = ".xlsx"
 FILE_TYPE2 = ".xls"
+FILE_TYPE3 = ".txt"
 
 # MONTH_SET = "JAN_FEB"
 MONTH_SET = "FEB_MARCH"

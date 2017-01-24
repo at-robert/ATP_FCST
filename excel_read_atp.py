@@ -7,6 +7,7 @@ import atp_def
 import Junipter
 import Mitac
 import Fabrinet
+import re
 
 #----------------------------------------------------------------------
 def check_ATP_rule(first_sheet,key_row):
@@ -23,6 +24,35 @@ def check_ATP_rule(first_sheet,key_row):
     else:
         print "No rule found and need to verify manually"
         return 0
+
+#---------------------------------------------------------------------- 
+def search_txt_CM():
+    search_txt_CM.txt_file_countj = 0
+    search_txt_CM.key_sheet_name = []
+
+    for file in os.listdir(atp_def.LIST_PATH):
+        if file.endswith(atp_def.FILE_TYPE3):
+            print "============> Txt Files = %s/%s" %(atp_def.LIST_PATH,file)
+            search_txt_CM.key_sheet_name.append(file)
+            search_txt_CM.xls_file_countj += 1
+
+    print "txt file count = %d" %(search_txt_CM.txt_file_countj)
+
+#----------------------------------------------------------------------
+def search_key_in_txt_file(key,filename):
+    """
+    Open ic require file with part number
+    """
+    #print "key = " + key
+    i = 1
+    p = re.compile(key)
+    fp = open(filename,"r")
+    zops = fp.readlines()
+    for lineStr in zops:
+        if(p.search(lineStr))
+            print "================> Matched at row[%d] at [%s]" %(i,filename)
+            print "================> Matched line: [%s]" %(lineStr)
+
 #---------------------------------------------------------------------- 
 def search_xls_CM():
     search_xls_CM.xls_file_countj = 0
@@ -58,6 +88,9 @@ def search_key_in_file(first_sheet,key,filename):
 def search_key_in_CM_support(key):
     for i in range(0,search_xls_CM.xls_file_countj):
         search_key_in_file(search_xls_CM.key_sheet[i],key,search_xls_CM.key_sheet_name[i])
+
+    for i in range(0,search_txt_CM.xls_file_countj):
+        search_key_in_file(key,search_txt_CM.key_sheet_name[i])
 #----------------------------------------------------------------------
 def check_icq_row_range(ic_sheet,index):
     """
@@ -144,4 +177,5 @@ if __name__ == "__main__":
     print "Setup Path = %s" %(path)
     print "Current date & time " + time.strftime("%c")
     search_xls_CM()
+    search_txt_CM()
     open_index_file(path)
