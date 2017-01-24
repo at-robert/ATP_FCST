@@ -90,7 +90,7 @@ def search_key_in_CM_support(key):
         search_key_in_file(search_xls_CM.key_sheet[i],key,search_xls_CM.key_sheet_name[i])
 
     for i in range(0,search_txt_CM.xls_file_countj):
-        search_key_in_file(key,search_txt_CM.key_sheet_name[i])
+        search_key_in_txt_file(key,search_txt_CM.key_sheet_name[i])
 #----------------------------------------------------------------------
 def check_icq_row_range(ic_sheet,index):
     """
