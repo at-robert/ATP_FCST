@@ -31,10 +31,10 @@ def search_txt_CM():
     search_txt_CM.key_sheet_name = []
 
     for file in os.listdir(atp_def.LIST_PATH):
-        if file.endswith(atp_def.FILE_TYPE3):
+        if file.endswith(atp_def.FILE_TYPE3) | file.endswith(atp_def.FILE_TYPE4):
             print "============> Txt Files = %s/%s" %(atp_def.LIST_PATH,file)
             search_txt_CM.key_sheet_name.append(file)
-            search_txt_CM.xls_file_countj += 1
+            search_txt_CM.txt_file_countj += 1
 
     print "txt file count = %d" %(search_txt_CM.txt_file_countj)
 
@@ -49,9 +49,12 @@ def search_key_in_txt_file(key,filename):
     fp = open(filename,"r")
     zops = fp.readlines()
     for lineStr in zops:
-        if(p.search(lineStr))
-            print "================> Matched at row[%d] at [%s]" %(i,filename)
-            print "================> Matched line: [%s]" %(lineStr)
+        if(p.search(lineStr)):
+            if(i == 1):
+                print "================> Matched at row[%d] at [%s]" %(i,filename)
+            print "================> Matched TXT line: [%s]" %(lineStr)
+            i = i + 1
+    print "================> Matched TXT line Total: %d" %(i-1)
 
 #---------------------------------------------------------------------- 
 def search_xls_CM():
@@ -89,8 +92,8 @@ def search_key_in_CM_support(key):
     for i in range(0,search_xls_CM.xls_file_countj):
         search_key_in_file(search_xls_CM.key_sheet[i],key,search_xls_CM.key_sheet_name[i])
 
-    for i in range(0,search_txt_CM.xls_file_countj):
-        search_key_in_txt_file(key,search_txt_CM.key_sheet_name[i])
+    for i in range(0,search_txt_CM.txt_file_countj):
+        search_key_in_txt_file(key,atp_def.LIST_PATH + '/' + search_txt_CM.key_sheet_name[i])
 #----------------------------------------------------------------------
 def check_icq_row_range(ic_sheet,index):
     """
